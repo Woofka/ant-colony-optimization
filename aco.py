@@ -82,14 +82,15 @@ class AntColony:
 
     def updateBestRoute(self):
         """ Обновляет кратчайший машрут <self.bestRoute> и его стоимость <self.bestRouteCost> """
-        bestAnt = 0
+        bestAnt = -1
         bestCost = self.bestRouteCost
         for k in range(self.antsNum):
             if self.routesCosts[k] < bestCost:
                 bestAnt = k
                 bestCost = self.routesCosts[k]
-        self.bestRouteCost = self.routesCosts[bestAnt]
-        self.bestRoute = self.antsRoutes[bestAnt]
+        if bestAnt != -1:
+            self.bestRouteCost = self.routesCosts[bestAnt]
+            self.bestRoute = self.antsRoutes[bestAnt]
 
     def updatePheromone(self):
         """ Обновляет концентрации феромонов в матрице <self.matrixPheromone> """
